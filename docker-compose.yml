@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend/src:/App/src
+     
+  backend:
+    build: ./backend
+    ports:
+    - 3001:3001
+    environment:
+      DB_URL: mongodb://db/Csteam
+    volumes:
+      - ./backend:/app
+  database:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - Csteam:/data/db
+
+volumes:
+  Csteam:
+  data:
+  logs:
